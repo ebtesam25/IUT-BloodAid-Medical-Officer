@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IUT Blood Aid</title>
+<link href="style-home.css" rel="stylesheet" type="text/css">
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!-- Fonts-->
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<!--Firebase-->
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
+	
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAJVcEnQE5bYSYV5jDnv61zSAQrHQ8jMyU",
+    authDomain: "iut-blood-aid.firebaseapp.com",
+    databaseURL: "https://iut-blood-aid.firebaseio.com",
+    projectId: "iut-blood-aid",
+    storageBucket: "iut-blood-aid.appspot.com",
+    messagingSenderId: "358159762490"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="index.js"></script>
+	
+
+</head>
+
+<body>
+	<div class="logo"></div>
+	<div class="ADMIN_PANEL">MEDICAL OFFICER</div>
+<div id="login_page">
+<div class="form-group">
+  		<input type="text" class="form-control" id="user" placeholder="Username">
+	</div>
+	<div class="form-group">
+  		<input type="password" class="form-control" id="pwd" placeholder="Password">
+	</div>
+	<div class="frgt"><a href="#" data-toggle="modal" data-target="#modal">Forgot Password?</a></div>
+	<button type="button" class="btn btn-primary btn-block" id="login" onClick="login()">Login</button>	
+<!-- Modal -->
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Forgot your password?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please contact the administrators to reset it for you.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+	
+<div id="loggedin">
+  <div class="success">You have successfully logged in</div>
+	<button type="button" class="btn btn-primary btn-block" id="musers" onClick="location.href='Manage Donors.html'">Manage Donors</button>
+	<button type="button" class="btn btn-primary btn-block" id="logout" onClick="logout()">Logout</button>	
+</div>
+	
+</body>
+</html>

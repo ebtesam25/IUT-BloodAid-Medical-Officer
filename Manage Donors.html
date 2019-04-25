@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IUT Blood Donation | Manage Donors</title>
+<link href="style-mDonors.css" rel="stylesheet" type="text/css">
+	
+<!-- Fonts-->
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<!--Firebase-->
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-firestore.js"></script>
+	
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAJVcEnQE5bYSYV5jDnv61zSAQrHQ8jMyU",
+    authDomain: "iut-blood-aid.firebaseapp.com",
+    databaseURL: "https://iut-blood-aid.firebaseio.com",
+    projectId: "iut-blood-aid",
+    storageBucket: "iut-blood-aid.appspot.com",
+    messagingSenderId: "358159762490"
+  };
+  firebase.initializeApp(config);
+</script>
+
+	
+</head>
+
+<body>
+<div class="navbar"></div>
+<div class="logo"><img src="logo2.png" width="108" height="38" alt=""/><button id="loadbtn">LOAD</button></div>
+<div class="table_back">
+	<table id="students" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <th id="sid" scope="col">&nbsp;ID</th>
+	  <th id="name" scope="col">&nbsp;Name</th>
+      <th id="bg" scope="col">&nbsp;Blood Group</th>
+      <th id="as" scope="col">&nbsp;Account Status</th>
+	  <th id="mod" scope="col">&nbsp;Modify</th>
+	  <th id="fid" scope="col">&nbsp;Firebase ID</th>
+    </tr>
+  </tbody>
+</table>
+
+	<div class="contacts"></div>
+</div>
+</body>
+	<script src="mDonors.js"></script>
+</html>
