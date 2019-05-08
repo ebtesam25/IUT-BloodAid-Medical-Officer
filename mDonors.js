@@ -4,15 +4,15 @@ loadbtn.addEventListener("click",generateTable);
 function generateTable(){
 var table = document.getElementById("students");
 var query = firebase.database().ref("Donors").child("A+");
-
 query.once("value").then(function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
 	 //console.log(snapshot.val());
     var tr = document.createElement("tr");
     var keY = childSnapshot.key;
 	  var valuE = childSnapshot.val();
+	  var bg="A+";
 	  
-	  donorHtmlFromObject(valuE,keY);
+	  donorHtmlFromObject(valuE,keY,bg);
 	
   });
 });
@@ -23,8 +23,9 @@ query2.once("value").then(function(snapshot) {
     var tr = document.createElement("tr");
     var keY = childSnapshot.key;
 	  var valuE = childSnapshot.val();
+	  var bg="A-";
 	  
-	  donorHtmlFromObject(valuE,keY);
+	  donorHtmlFromObject(valuE,keY,bg);
 	
   });
 });
@@ -35,14 +36,87 @@ query3.once("value").then(function(snapshot) {
     var tr = document.createElement("tr");
     var keY = childSnapshot.key;
 	  var valuE = childSnapshot.val();
+	  var bg="B+";
 	  
-	  donorHtmlFromObject(valuE,keY);
+	  donorHtmlFromObject(valuE,keY,bg);
 	
   });
 });
+
+
+var query4 = firebase.database().ref("Donors").child("AB+");
+query4.once("value").then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	 //console.log(snapshot.val());
+    var tr = document.createElement("tr");
+    var keY = childSnapshot.key;
+	  var valuE = childSnapshot.val();
+	  var bg="AB+";
+	  donorHtmlFromObject(valuE,keY,bg);
+	
+  });
+});
+	
+var query5 = firebase.database().ref("Donors").child("AB-");
+query5.once("value").then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	 //console.log(snapshot.val());
+    var tr = document.createElement("tr");
+    var keY = childSnapshot.key;
+	  var valuE = childSnapshot.val();
+	  var bg="AB-";
+	  
+	  donorHtmlFromObject(valuE,keY,bg);
+	
+  });
+});
+	
+var query6 = firebase.database().ref("Donors").child("O+");
+query6.once("value").then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	 //console.log(snapshot.val());
+    var tr = document.createElement("tr");
+    var keY = childSnapshot.key;
+	  var valuE = childSnapshot.val();
+	  var bg="O+";
+	  
+	  donorHtmlFromObject(valuE,keY,bg);
+	
+  });
+});
+	
+var query7 = firebase.database().ref("Donors").child("O-");
+query7.once("value").then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	 //console.log(snapshot.val());
+    var tr = document.createElement("tr");
+    var keY = childSnapshot.key;
+	  var valuE = childSnapshot.val();
+	  var bg="O-";
+	  
+	  donorHtmlFromObject(valuE,keY,bg);
+	
+  });
+});
+	
+var query8 = firebase.database().ref("Donors").child("B-");
+query8.once("value").then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	 //console.log(snapshot.val());
+    var tr = document.createElement("tr");
+    var keY = childSnapshot.key;
+	  var valuE = childSnapshot.val();
+	  var bg="B-";
+	  
+	  donorHtmlFromObject(valuE,keY,bg);
+	
+  });
+});
+	
 }
 
-function donorHtmlFromObject(donor,key){
+
+function donorHtmlFromObject(donor,key,bgroup){
   console.log( donor );
 	var tableRef=document.getElementById("students");
 	var indexno =tableRef.rows.length;
@@ -69,24 +143,26 @@ function donorHtmlFromObject(donor,key){
 	console.log(status);
 	var details  = document.createTextNode(status);
 	newCell.appendChild(details);
-	var newCell = newDonor.insertCell(4);
-	var btn = document.createElement("BUTTON");
-  	btn.innerHTML = "Approve";
-	btn.className = "apprButton";
-	btn.setAttribute("onclick","approvalState(f_id.innerHTML);");
-	newCell.setAttribute("align","center");
-  	newCell.appendChild(btn);
 	var key_id=key;
 	console.log(key_id);
-	var newCell = newDonor.insertCell(5);
+	var newCell = newDonor.insertCell(4);
 	var details  = document.createTextNode(key_id);
 	newCell.setAttribute("id","f_id");
 	newCell.appendChild(details);
+	var newCell = newDonor.insertCell(5);
+	var btn = document.createElement("BUTTON");
+  	btn.innerHTML = "Approve";
+	btn.className = "apprButton";
+	btn.setAttribute("onclick","approvalState(this);");
+	newCell.setAttribute("align","center");
+  	newCell.appendChild(btn);
+	
 }
-function approvalState(fid){
-var id = fid;
-	console.log(id);
-var ref = firebase.database().ref("Donors/A+/" + id);
+function approvalState(row){
+	var id=row.parentNode.parentNode.cells.item(4).innerHTML;
+	var bg=row.parentNode.parentNode.cells.item(2).innerHTML;
+	console.log(id,bg);
+var ref = firebase.database().ref("Donors/"+bg+"/"+ id);
 	ref.on("value", gotOne);
 	ref.update({status:"approved"});	
 }
