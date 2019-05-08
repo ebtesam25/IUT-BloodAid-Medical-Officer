@@ -54,9 +54,11 @@ td{
 	z-index: 3;
 }
 .loadbtn{
-	position: fixed;
-	top:200px;
-	left:20px;
+	position: absolute;
 	z-index: 7;
+}
+.btn .btn-danger{
+	position: absolute;
+	top:90px;
 }
 

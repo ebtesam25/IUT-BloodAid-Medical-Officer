@@ -164,7 +164,8 @@ function approvalState(row){
 	console.log(id,bg);
 var ref = firebase.database().ref("Donors/"+bg+"/"+ id);
 	ref.on("value", gotOne);
-	ref.update({status:"approved"});	
+	ref.update({status:"approved"});
+	window.alert("Account approved");
 }
 function gotOne(data) {
 	var x = data.val();
